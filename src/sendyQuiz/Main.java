@@ -10,7 +10,7 @@ public class Main {
 //		orders.put("Destination", "Thika");
 //		
 //		System.out.println(orders);
-
+		
 		String[][] orders = {{"Foo","Bar","de"},{"Test","Test34","et"}};
 		DistanceMaps m = new DistanceMaps(orders);
 
