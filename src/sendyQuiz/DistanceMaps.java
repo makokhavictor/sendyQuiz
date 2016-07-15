@@ -10,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 //System.out.println(target.request(MediaType.APPLICATION_JSON_TYPE).get(String.class));
 public class DistanceMaps {
 	protected static String distanceMatrixHostUrl = "https://maps.googleapis.com/maps/api/directions/";
-	protected static String fullUrl;
 	protected static String units = "metric";
 	protected static String mode = "json";
 	public static String origin;
@@ -30,13 +29,13 @@ public class DistanceMaps {
 	
 	public static String locationsDistanceDifference(){
 		Client client = ClientBuilder.newClient();		
-		fullUrl = distanceMatrixHostUrl
-						+mode+"?units="+units
-						+"&origins="+origin
-						+"&destination="+destination
-						+"&waypoints=optimize:true|"+wrapWaypoints(waypoints)
-						+"&key="+APIKEY;
-		WebTarget target = client.target(fullUrl);
+		WebTarget target = client.target(distanceMatrixHostUrl+mode)
+				.queryParam("units", units)
+				.queryParam("origin", origin)
+				.queryParam("destination", destination)
+				.queryParam("waypoints", "optimize:true|"+wrapWaypoints(waypoints))
+				.queryParam("key", APIKEY);
+		
 		return target.request(MediaType.APPLICATION_JSON_TYPE).get(String.class);
 	}
 //	Convert Waypoints array into String

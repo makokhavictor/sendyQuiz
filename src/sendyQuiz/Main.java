@@ -9,7 +9,7 @@ public class Main {
 		String origin = "Nairobi";
 		String destination = "Thika";
 		String[] waypoints = {"Kangemi","Parklands"};
-
+		
 		DistanceMaps m = new DistanceMaps(origin,destination,waypoints);
 
 		
