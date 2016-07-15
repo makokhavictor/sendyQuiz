@@ -6,6 +6,8 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
+
+
 //WebTarget target = client.target("https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=Nairobi&destinations=Kisumu&key=AIzaSyAH66vk6sJooQ9au-PmAu5LIrO3X5BNMso");
 //System.out.println(target.request(MediaType.APPLICATION_JSON_TYPE).get(String.class));
 public class DistanceMaps {
@@ -23,11 +25,11 @@ public class DistanceMaps {
 		this.destination = _destination;
 		this.waypoints = _waypoints;
 		
-		System.out.println(locationsDistanceDifference());
+		System.out.println(directionRouteCalculator());
 	}
 	
 	
-	public static String locationsDistanceDifference(){
+	public static String directionRouteCalculator(){
 		Client client = ClientBuilder.newClient();		
 		WebTarget target = client.target(distanceMatrixHostUrl+mode)
 				.queryParam("units", units)
@@ -35,6 +37,7 @@ public class DistanceMaps {
 				.queryParam("destination", destination)
 				.queryParam("waypoints", "optimize:true|"+wrapWaypoints(waypoints))
 				.queryParam("key", APIKEY);
+		
 		
 		return target.request(MediaType.APPLICATION_JSON_TYPE).get(String.class);
 	}
